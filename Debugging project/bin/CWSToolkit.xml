@@ -1,0 +1,1192 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CWSToolkit</name>
+    </assembly>
+    <members>
+        <member name="T:CWSToolkit.AuthUser">
+            <summary>
+            A class containing various methods used to authenticate/authorize users on a CWS web application and retrieve identity details.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.ModifyWebConfig">
+             <summary>
+            Modifies web.config to enable cas authentication.
+             </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.BlockUnauthorizedUsers(System.Int32,System.String[])">
+            <summary>
+            WEBFORMS ONLY: Redirects any user who is not a member of any of the specified roles nor an app admin
+            to an unauthorized page. Anonymous users get redirected to the login page. Specify no roles to 
+            check if the user is a member of any role for the specified app.
+            </summary>
+            <param name="appID"> The appID of the app to use for checking.</param>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.BlockUnauthorizedUsers(System.String[])">
+            <summary>
+            WEBFORMS ONLY: Redirects any user who is not a member of any of the specified roles nor an app admin
+            to an unauthorized page. Anonymous users get redirected to the login page. If no roles are specified,
+            the user is checked for any role for the current app.
+            </summary>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsMemberOf(System.Int32,System.String[])">
+            <summary>
+            Checks if the current user is a member of any of the specified roles. Always returns true for app admins.
+            If no roles are specified, the user is checked for any role belonging to the specified app.
+            </summary>
+            <param name="appID"> The appID of the app to use for checking.</param>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsMemberOf(System.String[])">
+            <summary>
+            Checks if the current user is a member of any of the specified roles. Always returns true for app admins.
+            If no roles are specified, the user is checked for any role belonging to the specified app.
+            </summary>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsAppAdmin">
+            <summary>
+            Checks if the current user is an app admin.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsAppAdmin(System.Int32)">
+            <summary>
+            Checks if the current user is an app admin.
+            </summary>
+            <param name="appID"> The appID of the app to use for checking.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsGlobalAdmin">
+            <summary>
+            Checks if the current user is a global admin.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetFirstName">
+            <summary>
+            Retrieves the user's first name from their identity cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetDepartment">
+            <summary>
+            Retrieves the user's first name from their identity cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetLastName">
+            <summary>
+            Retrieves the user's last name from their auth cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetFullName">
+            <summary>
+            Retrieves the user's first and last name from their auth cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetGivenName">
+            <summary>
+            Retrieves the user's GIVEN first name (not preferred) from their auth cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetUsername">
+            <summary>
+            Retrieves the user's username from their auth cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsLoggedIn">
+            <summary>
+            Determines whether a user is logged in or not.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetEmail">
+            <summary>
+            Retrieves the user's email address. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsAUUser">
+            <summary>
+            Determines whether the user logged in with AU credentials or a Shared custom user account. Returns null if the user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.isDuoAuthenticated">
+            <summary>
+            Determines whether the user has authenticated with DUO. Returns null if not.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.CheckUser(System.Int32,System.String[])">
+            <summary>
+            Checks whether the currently logged-in user is a member of any of the specified roles. Returns null if the auth cookie was unabled to be unpacked.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetAllRoles">
+            <summary>
+            Returns all the user's roles as a Dictionary object. The key is the appID, and the value is a string array 
+            containing the roles for that appID. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetAllUsersInRoles(System.String[])">
+            <summary>
+            Returns an array of Dictionary objects representing all users that are part of the given role(s). 
+            The dictionary's keys include: "username", "givenname", "firstname", "lastname", and "isAUUser".
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetAllUsersInRoles(System.Int32,System.String[])">
+            <summary>
+            Returns an array of Dictionary objects representing all users that are part of the given role(s) for the specified appID. 
+            The dictionary's keys include: "username", "givenname", "firstname", "lastname", and "isAUUser".
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.IsPageViewAuthorized(System.String)">
+            <summary>
+            verify's that user is authenticated and has proper roles to view a pagemaster page
+            if not it redirects them
+            <param name="pathname"> the path the pagemaster action recieves in the individual application.</param>
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetPagemasterAuthRedirect(System.String)">
+            <summary>
+            verify's that user is authenticated and has proper roles to view a pagemaster page
+            if not it redirects them
+            <param name="pathname"> the path the pagemaster action recieves in the individual application.</param>
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetAppRoles">
+            <summary>
+            Returns all the user's roles for the current app. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.GetAppRoles(System.Int32)">
+            <summary>
+            Returns all the user's roles for a specific app. Returns null if user is not logged in.
+            </summary>
+            <param name="appID">The application ID to retrieve roles for.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.Logout">
+            <summary>
+            Logs the current user out by deleting their auth cookie.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.MachineKeyEncrypt(System.String)">
+            <summary>
+            Encrypts a string with the web.config's MachineKey.
+            </summary>
+            <param name="text"> The text to encrypt.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthUser.MachineKeyDecrypt(System.String)">
+            <summary>
+            Decrypts a string with the web.config's MachineKey.
+            </summary>
+            <param name="text"> The text to decrypt.</param>
+        </member>
+        <member name="T:CWSToolkit.Section">
+            <summary>
+            A class used to write to the web.config specifi call cas info
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.AllowRolesAttribute">
+            <summary>
+            This method name is now obsolete. Please use AuthorizeUser instead.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.AuthorizeUserAttribute">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.1
+            </summary>
+            <param name="allowedRoles">The role(s) required for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.String[],System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.1
+            </summary>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            <param name="duoRoles">The role(s) that require duo authentication as well for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Boolean,System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.2
+            </summary>
+            <param name="allowCustomUsers"> Whether to allow non-AU account access.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Boolean,System.String[],System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.2
+            </summary>
+            <param name="allowCustomUsers"> Whether to allow non-AU account access.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            <param name="duoRoles">The role(s) that require duo authentication as well for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Boolean,System.Boolean,System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.2
+            </summary>
+            <param name="allowCustomUsers"> Whether to allow non-AU account access.</param>
+            <param name="duoRequired"> Whether to Authenticate the user with duo</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Int32,System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.3
+            </summary>
+            <param name="appID"> The appID of the app to use for role checking.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Int32,System.String[],System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.3
+            </summary>
+            <param name="appID"> The appID of the app to use for role checking.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            <param name="duoRoles">The role(s) that require duo authentication as well for access.</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Int32,System.Boolean,System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.3
+            </summary>
+            <param name="appID"> The appID of the app to use for role checking.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            <param name="duoRequired"> Whether to Authenticate the user with duo</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.#ctor(System.Int32,System.Boolean,System.Boolean,System.String[],System.String[])">
+            <summary>
+            CWSToolkit Authorize Attribute. Restricts access to action methods in a controller to logged in users only. Optionally, 
+            further restrictions can be specified.4
+            </summary>
+            <param name="appID"> The appID of the app to use for role checking.</param>
+            <param name="allowCustomUsers"> Whether to allow non-AU account access.</param>
+            <param name="allowedRoles">The role(s) required for access.</param>
+            <param name="duorequired">indicates if duo authentication is required for everyone</param>
+            <param name="duoRequiredRoles">roles to require duo Authentication for on this call</param>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.AuthorizeCore(System.Web.HttpContextBase)">
+            <summary>
+            OVERRIDDEN METHOD: The logic that determines whether a user is authorized or not.
+            </summary>
+            <param name="httpContext">Current HttpContext.</param>
+            <returns>Boolean value representing whether a user is authorized to access the action method or not.</returns>
+        </member>
+        <member name="M:CWSToolkit.AuthorizeUserAttribute.HandleUnauthorizedRequest(System.Web.Mvc.AuthorizationContext)">
+            <summary>
+            OVERRIDDEN METHOD: Only called when AuthorizeCore() returns false.
+            </summary>
+            <param name="filterContext">Current AuthorizationContext.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.ByteArrayHelpers.ToString(System.Byte[],System.Boolean)">
+            <summary>
+            Converts a byte array to a string.
+            </summary>
+            <param name="bytes">Byte array to convert.</param>
+            <param name="b">Required to overwrite default ToString function. Value is irrelevant.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.EnumHelpers.Next``1(``0)">
+            <summary>
+            Get next member of the enum.
+            </summary>
+            <typeparam name="T">Enum type.</typeparam>
+            <param name="src">Enum.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CWSToolkit.Helpers.EnumHelpers.ToString(System.Enum)">
+            <summary>
+            Converts enum to string.
+            </summary>
+            <param name="e">Enum.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.IEnumerableHelpers.ToSelectList``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Func{``0,System.String})">
+            <summary>
+            Converts any IEnumerable into a SelectList.
+            </summary>
+            <typeparam name="T">Type of object stored in IEnumerable.</typeparam>
+            <param name="e">IEnumerable to convert.</param>
+            <param name="text">Lambda expression selecting the Text field, eg. n => n.preferredname.</param>
+            <param name="value">Lambda expression selecting the Value field, eg. v => v.aubGid.ToString().</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.IEnumerableHelpers.ToSelectList``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Func{``0,System.String},System.Int32)">
+            <summary>
+            Converts any IEnumerable into a SelectList.
+            </summary>
+            <typeparam name="T">Type of object stored in IEnumerable.</typeparam>
+            <param name="e">IEnumerable to convert.</param>
+            <param name="text">Lambda expression selecting the Text field, eg. n => n.preferredname.</param>
+            <param name="value">Lambda expression selecting the Value field, eg. v => v.aubGid.ToString().</param>
+            <param name="selected">Value of the default option.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.IEnumerableHelpers.ToSelectList``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Func{``0,System.String},System.String)">
+            <summary>
+            Converts any IEnumerable into a SelectList.
+            </summary>
+            <typeparam name="T">Type of object stored in IEnumerable.</typeparam>
+            <param name="e">IEnumerable to convert.</param>
+            <param name="text">Lambda expression selecting the Text field, eg. n => n.preferredname.</param>
+            <param name="value">Lambda expression selecting the Value field, eg. v => v.aubGid.ToString().</param>
+            <param name="selected">Value of the default option.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.ListHelpers.ToSelectList(System.Collections.Generic.List{System.Web.Mvc.SelectListItem})">
+            <summary>
+            Converts a List of SelectListItems into a SelectList.
+            </summary>
+            <param name="l">List to convert.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.ListHelpers.ToSelectList(System.Collections.Generic.List{System.Web.Mvc.SelectListItem},System.Int32)">
+            <summary>
+            Converts a List of SelectListItems into a SelectList.
+            </summary>
+            <param name="l">List to convert.</param>
+            <param name="selected">Value of the default option. [Or text of the default option; I can't remember.]</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.ListHelpers.ToSelectList(System.Collections.Generic.List{System.Web.Mvc.SelectListItem},System.String)">
+            <summary>
+            Converts a List of SelectListItems into a SelectList.
+            </summary>
+            <param name="l">List to convert.</param>
+            <param name="selected">Value of the default option. [Or text of the default option; I can't remember.]</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.SharedHelpers.ProductionURI(System.Int32)">
+            <summary>
+            Outputs the production URL that is set in Shared Apps for the current app.
+            </summary>
+            <param name="appID">The ID of the App to retrieve the production URI for. If one does not already exist, it will be created.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.SharedHelpers.ProductionURI">
+            <summary>
+            Outputs the production URL that is set in Shared Apps for the current app.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StreamHelpers.ToBytes(System.IO.Stream)">
+            <summary>
+            Converts a stream to a byte array.
+            </summary>
+            <param name="stream">Stream to convert.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StreamHelpers.ToString(System.IO.Stream,System.Boolean)">
+            <summary>
+            Converts a stream to a string.
+            </summary>
+            <param name="stream">Stream to convert.</param>
+            <param name="b">Required to overwrite default ToString function. Value is irrelevant.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.GetExtension(System.String)">
+            <summary>
+            Returns the file extension associated with a given MIME type.
+            </summary>
+            <param name="mimetype">MIME type.</param>
+            <returns>File extension.</returns>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.GetMimeType(System.String)">
+            <summary>
+            Returns the MIME type associated with a given file extension.
+            </summary>
+            <param name="extension">File extension.</param>
+            <returns>MIME type.</returns>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.Sanitize(System.String)">
+            <summary>
+            Removes invalid characters from a string.
+            </summary>
+            <param name="s">String to clean.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.Split(System.String,System.String)">
+            <summary>
+            Splits a string using a string delimiter.
+            </summary>
+            <param name="s">String to split.</param>
+            <param name="delimiter">String delimiter.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.ToBytes(System.String)">
+            <summary>
+            Converts a string to a byte array.
+            </summary>
+            <param name="s">String to convert.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.ToPhone(System.String)">
+            <summary>
+            Formats a string as a phone number.
+            All non-numeric characters are removed.
+            If the result has 7 characters, the phone number is formatted like "xxx-xxxx".
+            If the result has 10 characters, the phone number is formatted like "(xxx) xxx-xxxx".
+            If the result does not have 7 or 10 characters, null is returned.
+            </summary>
+            <param name="s">String to format.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.ToSentence(System.String)">
+            <summary>
+            Returns a copy of this string converted to sentence case.
+            </summary>
+            <param name="s">String to convert.</param>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.ToTitle(System.String)">
+            <summary>
+            Returns a copy of this string converted to title case.
+            </summary>
+            <param name="s">String to convert.</param>
+        </member>
+        <member name="F:CWSToolkit.Helpers.StringHelpers.UriRfc3986CharsToEscape">
+            <summary>
+            The set of characters that are unreserved in RFC 2396 but are NOT unreserved in RFC 3986.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Helpers.StringHelpers.EscapeUriDataStringRfc3986(System.String)">
+            <summary>
+            Escapes a string according to the URI data string rules given in RFC 3986.
+            </summary>
+            <param name="value">The value to escape.</param>
+            <returns>The escaped value.</returns>
+            <remarks>
+            The <see cref="M:System.Uri.EscapeDataString(System.String)"/> method is <i>supposed</i> to take on
+            RFC 3986 behavior (if certain elements are present in a .config file).  Of course, this
+            doesn't work at all, so let's just do it ourselves, shall we?
+            </remarks>
+        </member>
+        <member name="M:CWSToolkit.Helpers.ViewHelpers.RenderPartialViewToString(System.String,System.Object,System.Web.Mvc.ControllerContext,System.Web.Mvc.ViewDataDictionary,System.Web.Mvc.TempDataDictionary)">
+            <summary>
+            Returns a sting of a view's compiled HTML
+            </summary>
+            <param name="viewName">The name of the view to be rendered. The view must be accessible from the controller in which this method is called.</param>
+            <param name="model">The model the view will use to populate</param>
+            <param name="context">Already defined in your controller, just write 'ControllerContext'</param>
+            <param name="ViewData">Already defined in your controller, just write 'ViewData'</param>
+            <param name="TempData">Already defined in your controller, just write 'TempData'</param>
+            <returns></returns>
+        </member>
+        <member name="T:CWSToolkit.CWSMasterPages">
+            <summary>
+            Razor Masterpages provided by CWS
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.CWSLayoutPages">
+            <summary>
+            ASPX Masterpages provided by CWS
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.MasterpageConstants.SharedHeadRemotePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.MasterpageConstants.SharedDynamicCWSPathBase(System.String)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.MasterpageConstants.MasterpagePathMatch(System.String)">
+            <param name="path">Virtual path requesting a masterpage via Shared/Masterpages</param>
+            <returns>
+            A Match object that returns true if it validly requests a Shared/Masterpages' masterpage. <br/>
+            Named Groups: <br/>
+            \t  ID: The unique ID of the requested Masterpage<br/>
+            \t  dataID : The unique ID of the MasterpageData required<br/>
+            \t  fileName: the title (without file extension) of the Masterpage requested
+            </returns>
+        </member>
+        <member name="M:CWSToolkit.MasterpageConstants.RemotePath(CWSToolkit.CWSMasterPages)">
+            <summary>
+            The remote path to fetch the given CWS Masterpage
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.MasterpageConstants.RemotePath(CWSToolkit.CWSLayoutPages)">
+            <summary>
+            The remote path to fetch the given CWS Masterpage
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.Email">
+            <summary>
+            A class that represents an email message to send from Auburn's email server.
+            </summary>
+        </member>
+        <member name="F:CWSToolkit.Email.Subject">
+            <summary>
+            The subject of the email.
+            </summary>
+        </member>
+        <member name="F:CWSToolkit.Email.Body">
+            <summary>
+            The body text of the email.
+            </summary>
+        </member>
+        <member name="F:CWSToolkit.Email.HTML">
+            <summary>
+            Specifies whether the body text is HTML. Set to false to use plain text.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Email.From(System.String,System.String)">
+            <summary>
+            Sets the sender of the email for the From field.
+            </summary>
+            <param name="displayName">The display name of the sender.</param>
+            <param name="email">The email of the sender.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.From(System.String)">
+            <summary>
+            Sets the sender of the email for the From field.
+            </summary>
+            <param name="email">The email of the sender.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddTo(System.String,System.String)">
+            <summary>
+            Adds a recipient to the current email's To field.
+            </summary>
+            <param name="displayName">The display name of the recipient.</param>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddTo(System.String)">
+            <summary>
+            Adds a recipient to the current email's To field.
+            </summary>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddCC(System.String,System.String)">
+            <summary>
+            Adds a recipient to the current email's CC field.
+            </summary>
+            <param name="displayName">The display name of the recipient.</param>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddCC(System.String)">
+            <summary>
+            Adds a recipient to the current email's CC field.
+            </summary>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddBCC(System.String,System.String)">
+            <summary>
+            Adds a recipient to the current email's BC field.
+            </summary>
+            <param name="displayName">The display name of the recipient.</param>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddBCC(System.String)">
+            <summary>
+            Adds a recipient to the current email's BC field.
+            </summary>
+            <param name="email">The email of the recipient.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddAttachment(System.IO.Stream,System.String,System.String)">
+            <summary>
+            Adds an attachment file to the email.
+            </summary>
+            <param name="fileData">A stream containing the binary file data.</param>
+            <param name="fileName">The name of the file.</param>
+            <param name="contentType">The MIME type of the file.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.AddAttachment(System.IO.Stream,System.String)">
+            <summary>
+            Adds an attachment file to the email.
+            </summary>
+            <param name="fileData">A stream containing the binary file data.</param>
+            <param name="fileName">The name of the file.</param>
+        </member>
+        <member name="M:CWSToolkit.Email.Reset">
+            <summary>
+            Resets the email object to its initial state.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Email.Send">
+            <summary>
+            Sends the email. Returns false on error.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.RemoteFile.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path">The path being requested.</param>
+            <param name="virtualPathRequest">The requestUriString to request the virtual file</param>
+        </member>
+        <member name="M:CWSToolkit.RemoteFile.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.Utilities">
+            <summary>
+            A class containing various utility methods and extension methods.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Utilities.AdminAccessLink(System.Int32,System.Int32)">
+            <summary>
+            Returns a URL that will direct a user to the role manager for the specified app.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+            <param name="roleID">Role identifier for the link.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.AdminAccessLink(System.Int32)">
+            <summary>
+            Returns a URL that will direct a user to the role manager for the specified app.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.AdminAccessLink">
+            <summary>
+            Returns a URL that will direct a user to the role manager for the current app.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Utilities.FileBrowserLink">
+            <summary>
+            Returns a URL that will direct a user to the app's file browser.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Utilities.FileBrowserLink(System.Int32)">
+            <summary>
+            Returns a URL that will direct a user to the page master index for the specified app.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.PageMasterLink">
+            <summary>
+            Returns a URL that will direct a user to the app's page master index.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Utilities.PageMasterLink(System.Int32)">
+            <summary>
+            Returns a URL that will direct a user to the page master index for the specified app.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.LogoutLink">
+            <summary>
+            Returns a URL that will log out a user, and then return them to the originating page.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.Utilities.RegistrationPageURL(System.Int32,System.String)">
+            <summary>
+            Returns a URL that will direct a user to the custom users' registration page.
+            </summary>
+            <param name="appID">Application identifier for the URL.</param>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.RegistrationPageURL(System.String)">
+            <summary>
+            Returns a URL that will direct a user to the custom users' registration page.
+            </summary>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.LoginPageURL(System.Int32,System.String)">
+            <summary>
+            Returns a URL that will direct a user to the login page.
+            </summary>
+            <param name="appID">Application identifier for the URL.</param>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.LoginPageURL(System.String)">
+            <summary>
+            Returns a URL that will direct a user to the login page.
+            </summary>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.DuoPageURL(System.Int32,System.String)">
+            <summary>
+            Returns a URL that will direct a user to the login page.
+            </summary>
+            <param name="appID">Application identifier for the URL.</param>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.DuoPageURL(System.String)">
+            <summary>
+            Returns a URL that will direct a user to the login page.
+            </summary>
+            <param name="redirectURL">URL to redirect to after registration/login.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.AddUsertoRole(System.String,System.Int32,System.Int32)">
+            <summary>
+            adds supplied username to role returns true if succesfully added or if the role already exists
+            
+            </summary>
+            <param name="Username"> The username to add the role to.</param>
+            <param name="roleID"> The ID of the role to add them to (look at the dropdown on the access page in view source).</param>
+            <param name="appID"> The ID of the application.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.IsValidGID(System.String)">
+            <summary>
+            Determines if the following GID exists in meta/ is valid WARNING: Does not check non AU Users
+            </summary>
+            <param name="GID"> The username to validate role membership for.</param>
+        </member>
+        <member name="M:CWSToolkit.Utilities.GetUserInfo(System.String)">
+            <summary>
+            returns user info about a user either in meta or our custom users database WARNING: Does not check non AU Users
+            </summary>
+            <param name="username"> The username to retrieve info about.</param>
+        </member>
+        <member name="T:CWSToolkit.CWSUser">
+            <summary>
+            A class for retrieving data about a given username.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.CheckUser(System.Int32,System.String[])">
+            <summary>
+            Checks whether the currently logged-in user is a member of any of the specified roles. Returns null if the auth cookie was unabled to be unpacked.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.IsMemberOf(System.Int32,System.String[])">
+            <summary>
+            Checks if the current user is a member of any of the specified roles. Always returns true for app admins.
+            If no roles are specified, the user is checked for any role belonging to the specified app.
+            </summary>
+            <param name="appID"> The appID of the app to use for checking.</param>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.IsMemberOf(System.String[])">
+            <summary>
+            Checks if the current user is a member of any of the specified roles. Always returns true for app admins.
+            If no roles are specified, the user is checked for any role belonging to the specified app.
+            </summary>
+            <param name="allowedRoles"> The roles to check for. Case-insensitive.</param>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.IsAppAdmin">
+            <summary>
+            Checks if the current user is an app admin.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.IsAppAdmin(System.Int32)">
+            <summary>
+            Checks if the current user is an app admin.
+            </summary>
+            <param name="appID"> The appID of the app to use for checking.</param>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.IsGlobalAdmin">
+            <summary>
+            Checks if the current user is a global admin.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.GetFullName">
+            <summary>
+            Retrieves the user's first and last name from their auth cookie. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.CWSUser.GetEmail">
+            <summary>
+            Determines whether a user is logged in or not.
+            </summary>
+            <summary>
+            Retrieves the user's email address. Returns null if user is not logged in.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.PathProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.PathProvider.DefaultRemotePath">
+            <summary>
+            The masterpage assigned to a given application, set in the constructors that is
+            called in the global.asax when the application is started.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.#ctor">
+            <summary>
+            Attempts to fetch the v2.0 CWSMasterpage called in a view.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.#ctor(CWSToolkit.CWSMasterPages)">
+            <summary>
+            Gets a v1.0 CWSMasterpage for a razor view engine.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.#ctor(CWSToolkit.CWSLayoutPages)">
+            <summary>
+            Gets a v1.0 CWSMasterpage for an aspx view engine.
+            </summary>
+            <param name="masterpage"></param>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.IsPathVirtual(System.String)">
+            <summary>
+            Checks to see if the virtual path is a known CWS virtual file
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.IsDynamicCWSPath(System.String)">
+            <summary>
+            Checks to see if this is a requset for a dynamic masterpage
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.IsDefaultRemotePath(System.String)">
+            <summary>
+            Determines if the virtual file should call the DefaultRemotePath
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.IsSharedHead(System.String)">
+            <summary>
+            Determies if the requset is for the CWS head
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.FileExists(System.String)">
+            <summary>
+            Checks to see if a virtual file needs to be fetched
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.PathProvider.GetFile(System.String)">
+            <summary>
+            Fetches the file.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Localities.Version1.Localities">
+            <summary>
+            Getter for web service localities.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.#ctor">
+            <summary>
+            Default constructor for localities.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.SecureWebService">
+            <summary>
+            This method secures the webservice and allows you make other calls to the webservice. Call this method in your other methods.
+            </summary>
+            <returns>
+            Returns true iff the request was successful AND the system authorized and authenticated us.
+            Throws exception if call is unsuccessful.
+            </returns>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetCountries">
+            <summary>
+            Returns a List of Countries.
+            If there is an error in processing, it returns an empty list.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetCitiesAndRegions(System.Int32,System.String)">
+            <summary>
+            Returns list of known cities and regions in the specified zipcode and country, and an empty list if none exist by parameter criteria.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetRegion(System.Int32)">
+            <summary>
+            Returns the region from the ID passed in, if it is not a valid ID, returns null.
+            </summary>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetCountry(System.Int32)">
+            <summary>
+            Returns the country object from the webservice for the country ID passed as a parameter.
+            </summary>
+            <param name="countryID">The ID of the country.</param>
+            <returns>Returns a Country object.</returns>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetCity(System.Int32)">
+            <summary>
+            Returns the city object from the webservice for the city ID passed as a parameter.
+            </summary>
+            <param name="cityID">The city ID passed as a parameter.</param>
+            <returns>Returns the city object.</returns>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetRegionsByCountry(System.Int32)">
+            <summary>
+            Gets a list of region objects returned from the web service by country, and an empty list if none found by that ID.
+            </summary>
+            <param name="countryID">The country ID sent in.</param>
+            <returns>Returns a list of regions for that country.</returns>
+        </member>
+        <member name="M:CWSToolkit.WebServices.Localities.Version1.Localities.GetCitiesByRegion(System.Int32)">
+            <summary>
+            Gets a list of cities for a given region (passed in as an ID).
+            </summary>
+            <param name="regionID">The region ID.</param>
+            <returns>Returns a list of cities for that region.</returns>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Localities.Version1.CityAndRegion">
+            <summary>
+            Used to build the object that contains city and region information from a given zip code.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.CityGID">
+            <summary>
+            The city Group ID returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.CityUID">
+            <summary>
+            The city Unique ID returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.CityName">
+            <summary>
+            The city Name returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.RegionGID">
+            <summary>
+            The region Group ID returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.RegionUID">
+            <summary>
+            The region Unique ID returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.CityAndRegion.RegionName">
+            <summary>
+            The region Name returned from the web service.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Localities.Version1.Country">
+            <summary>
+            Used to build the object that contains a given country's information.
+            The country codes are taken from the ISO 3166 standard which is defined as follows:
+            
+                ISO 3166 is a standard published by the International Organization for Standardization (ISO) 
+                that defines codes for the names of countries, dependent territories, special areas of geographical 
+                interest, and their principal subdivisions (e.g., provinces or states). 
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.Alpha2">
+            <summary>
+            The two letter abbreviation (Alpha-2 code) returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.Alpha3">
+            <summary>
+            The three letter abbreviation (Alpha-3 code) returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.CountryGID">
+            <summary>
+            The country's group ID returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.CountryUID">
+            <summary>
+            The country's unique ID returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.CountryISONumber">
+            <summary>
+            The country's ISO number 3166-1 standard returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Country.CountryName">
+            <summary>
+            The country's Name returned from the web service.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Localities.Version1.Region">
+            <summary>
+            Used to build the Region object returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Region.RegionGID">
+            <summary>
+            The regions's group ID returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Region.RegionUID">
+            <summary>
+            The regions's unique ID returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Region.RegionName">
+            <summary>
+            The region's name returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.Region.CountryGID">
+            <summary>
+            The country's group ID returned from the web service for a given country.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Localities.Version1.City">
+            <summary>
+            Used to build the City object returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.City.CityGID">
+            <summary>
+            The Group ID for the city returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.City.CityUID">
+            <summary>
+            The Unique ID for the city returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.City.RegionGID">
+            <summary>
+            The Group ID for the region returned from the web service.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Localities.Version1.City.CityName">
+            <summary>
+            The City's name returned from the web service.
+            </summary>
+        </member>
+        <member name="T:CWSToolkit.WebServices.Resources.WebServiceResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSCREATION">
+            <summary>
+              Looks up a localized string similar to 11/11/2014 3:09:23 PM.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSID">
+            <summary>
+              Looks up a localized string similar to hTb+UOOikrlYupDVAc9g7A==.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSPASSCODE">
+            <summary>
+              Looks up a localized string similar to asdf1234.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSTOKEN">
+            <summary>
+              Looks up a localized string similar to /7y1NFXpkKrQjjJBIcf/Uuvza1wMAhxAGdVUEmzKjx/wStLdUzVoUtKKrJBePn+6AAdfb3GjQ1HXYd5+FYv0cIcBk/Sn0mS96GHtxosj+lxkewyZvlQ5WUk2udTknTF9IvfD1vMumtVw8kvj1mqSStrkwCX0mNRv7jtquazo3nuXIygQoFpKa0WyBT6hkPLZXFgNsskfPtw1wFvVMkNICVYgVgrsXCqpGyZ1+xog/cumDaHPn95ZX9joGMrSBeVsZD6+w9hnbPSSMmBl+FFJbA==.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSUSERNAME">
+            <summary>
+              Looks up a localized string similar to captaki.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.CWSWebServiceBase">
+            <summary>
+              Looks up a localized string similar to https://cwstest.auburn.edu/.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.ServiceLocality">
+            <summary>
+              Looks up a localized string similar to CWS.WebServices.Localities/v1/.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.ServiceOrganization">
+            <summary>
+              Looks up a localized string similar to WebServices.Organization.
+            </summary>
+        </member>
+        <member name="P:CWSToolkit.WebServices.Resources.WebServiceResources.ServiceSecurity">
+            <summary>
+              Looks up a localized string similar to WebServices.Security/Security/Authentication/Login.
+            </summary>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.EventList(System.Web.Mvc.HtmlHelper,System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Outputs an event list pulled from an Exchange calendar.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+            <param name="identifier">Identifier for this particular event list.</param>
+            <param name="title">The title to show the user on the Events page reached by clicking an event or 'More Events'.</param>
+            <param name="users">The user (with @auburn.edu) to pull calendar events from. This can be a comma-delimited value of multiple users.</param>
+            <param name="disableCache">Disables the cache, so that every page load gets a new calendar. ONLY FOR TESTING; this puts a big strain on the calendar server.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.EventList(System.Web.Mvc.HtmlHelper,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Outputs an event list pulled from an Exchange calendar.
+            </summary>
+            <param name="identifier">Identifier for this particular event list.</param>
+            <param name="title">The title to show the user on the Events page reached by clicking an event or 'More Events'.</param>
+            <param name="users">The user (with @auburn.edu) to pull calendar events from. This can be a comma-delimited value of multiple users.</param>
+            <param name="disableCache">Disables the cache, so that every page load gets a new calendar. ONLY FOR TESTING; this puts a big strain on the calendar server.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.AccessLink(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Builds a link that will direct a user to the role manager.
+            </summary>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.AccessLink(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Builds a link that will direct a user to the role manager.C:\Users\els0017\Documents\TFS Mapping\toolkit-dll\CWSToolkit\Helpers\ListHelpers.cs
+            </summary>
+            <param name="linkText">Custom text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.AccessLink(System.Web.Mvc.HtmlHelper,System.Int32,System.String)">
+            <summary>
+            Builds a link that will direct a user to the role manager.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+            <param name="linkText">Custom text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.AccessLink(System.Web.Mvc.HtmlHelper,System.Int32,System.Int32,System.String)">
+            <summary>
+            Builds a link that will direct a user to the role manager.
+            </summary>
+            <param name="appID">Application identifier for the link.</param>
+            <param name="roleID">Role identifier for the link.</param>
+            <param name="linkText">Custom text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.FileBrowserLink(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Builds a link that will open the File Browser in a new tab/pop-up.
+            </summary>
+            <param name="linkText">Text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.FileBrowserLink(System.Web.Mvc.HtmlHelper,System.Int32,System.String)">
+            <summary>
+            Builds a link that will open the File Browser in a new tab/pop-up.
+            </summary>
+            <param name="appID">AppID of the web app to impersonate.</param>
+            <param name="linkText">Text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.ContentArea(System.Web.Mvc.HtmlHelper,System.String,System.Boolean)">
+            <summary>
+            Outputs an editable content area. No setup or installation required.
+            </summary>
+            <param name="identifier">The identifier string of the content area. If one does not already exist, it will be created.</param>
+            <param name="showLastUpdated">Whether or not to show the last updated timestamp underneath the content area.</param>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.PageMasterLink(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Builds a link that will open the File Browser in a new tab/pop-up.
+            </summary>
+            <param name="linkText">Text for the link.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.PageMasterLink(System.Web.Mvc.HtmlHelper,System.Int32,System.String)">
+            <summary>
+            Builds a link that will open the File Browser in a new tab/pop-up.
+            </summary>
+            <param name="appID">AppID of the web app to impersonate.</param>
+            <param name="linkText">Text for the link.</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.PageMaster(System.Web.Mvc.HtmlHelper,System.String,System.String,System.String,System.String,System.String,System.String,System.String)" -->
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.Slideshow(System.Web.Mvc.HtmlHelper,System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Outputs a slideshow. No setup or installation required.
+            </summary>
+            <param name="albumName">The name of the album. If one does not already exist, it will be created.</param>
+            <param name="width">The width in pixels for the slideshow.</param>
+            <param name="height">The height in pixels for the slideshow.</param>
+            <param name="appId">If you need to indicate a separate app, identify using the appID. </param>
+            <param name="zoomToFit">Whether to zoom (and crop) the images to fit in the slideshow, or alternatively, scale down the image.</param>
+        </member>
+        <member name="M:System.Web.Mvc.Html.CWSMVCHtmlHelpers.TwitterWidget(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Outputs an embedded twitter feed. Twitter widgets are designed on the twitter website, and their unique IDs are used to identify and call them. 
+            If no widget with matching ID is found, outputs empty div.
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="twitterID">Given by twitter to widget.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,41 @@
+﻿@model Debugging_project.Models.DebugClass
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Nested.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(f => f.field1, "Field 1", new { @class = "Labels" })
+                @Html.TextBoxFor(model => model.field1, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.field1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.field2, "Field 2", new { @class = "Labels" })
+                @Html.TextBox("field2", "", new { @class = "form-control", @maxlength = 250 })
+                @Html.ValidationMessageFor(model => model.field2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(f => f.OC.otherField, "other Field", new { @class = "Labels" })
+                @Html.TextBox("OC.otherField", "", new { @class = "form-control", @maxlength = 250 })
+                @Html.ValidationMessageFor(model => model.OC.otherField, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(m => m.OC.otherStringThing, "String thing", new { @class = "Labels" })
+                @Html.TextBox("OC.otherStringThing", "", new { @class = "form-control", @maxlength = 250 })
+                @Html.ValidationMessageFor(model => model.OC.otherStringThing, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <input type="submit" value="Submit" class="submit btn blue-btn special-submit" />
+        </div>
+    </div>
+}

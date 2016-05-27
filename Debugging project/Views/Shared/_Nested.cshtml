@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "~/Views/Shared/Site.cshtml";
+
+    //
+    // _Nested.cshtml
+    // Place default content in else blocks
+    // Example content provided in comments
+    //
+}
+
+@section title {
+    @if (IsSectionDefined("title"))
+    {
+        @RenderSection("title")
+    }
+    else if (ViewBag.Title != null)
+    {
+        <text>@ViewBag.Title</text>
+    }
+    else
+    {
+        <text>Auburn University</text>
+    }
+}
+
+@section head {
+
+    @* Application scripts/styles *@
+    @System.Web.Optimization.Scripts.Render("~/bundles/scripts")
+    @System.Web.Optimization.Styles.Render("~/bundles/styles")
+
+    <link href="https://cws.auburn.edu/shared/Assets/Styles/SidebarFix.css" rel="stylesheet" />
+
+    @RenderSection("head", false)
+}
+
+@section breadcrumb {
+    @if (IsSectionDefined("breadcrumb"))
+    {
+        @RenderSection("breadcrumb")
+    }
+    else
+    {
+        @* Not sure why you'd have a default breadcrumb, but knock yourself out *@
+    }
+}
+
+@section footer {
+    @if (IsSectionDefined("footer"))
+    {
+        @RenderSection("footer")
+    }
+    else
+    {
+        @*<p>
+                Auburn University | Auburn, Alabama 36849 | (334) 844-4000 |
+                <script type="text/javascript">
+                    emailE = 'auburn.edu';
+                    emailE = ('webmaster' + '@' + emailE);
+                    document.write("<a href='mailto:" + emailE + "'>" + emailE + "</a>");
+                </script>
+            </p>*@
+    }
+}
+
+@section slideshow {
+    @if (IsSectionDefined("slideshow"))
+    {
+        /*This is used to make a slideshow full-width when delcaring the @section slideshow tag*/
+        /*Do not add anything to that section. It will put whatever you add in the head and you will be bad.*/
+        <link href="https://cws.auburn.edu/shared/Assets/Styles/FullWidthSlideshow.css" rel="stylesheet" />
+        @RenderSection("slideshow")
+    }
+}
+
+@*This banner section is mainly used to have full-width slideshows across the page.
+    If you need a "full-width" container for text, use primary or secondary below.
+*@
+@section banner{
+    @if (IsSectionDefined("banner"))
+    {
+        @RenderSection("banner")
+    }
+}
+
+@section sidebar {
+    @if (IsSectionDefined("sidebar"))
+    {
+        @RenderSection("sidebar")
+    }
+}
+
+@section navbar {
+    @if (IsSectionDefined("navbar"))
+    {
+        @RenderSection("navbar")
+    }
+    else
+    {
+
+        <li><a href="http://www.auburn.edu/oit/students">Students</a></li>
+        <li><a href="http://www.auburn.edu/oit/employees">Employees</a></li>
+        <li><a href="https://cws.auburn.edu/oitpro" class="itProLock">IT Pros</a></li>
+        <li><a href="http://www.auburn.edu/oit/servicesTitle">Services</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="http://www.auburn.edu/oit/helpSupport">Support Areas</a>
+            <ul class="dropdown-menu">
+                <li><a href="http://www.auburn.edu/oit/acc">Computing Coordinators</a></li>
+                <li><a href="http://www.auburn.edu/oit/helpdesk">HelpDesk</a></li>
+                <li><a href="http://www.auburn.edu/oit/idm">Identity Management</a></li>
+                <li><a href="http://www.auburn.edu/img">IMG</a></li>
+                <li><a href="http://www.auburn.edu/oit/it_directory.php">IT Directory</a></li>
+                <li><a href="http://www.auburn.edu/oit/spcs">Student PC Shop</a></li>
+                <li><a href="http://www.auburn.edu/oit/report_problem.php">Report a Problem</a></li>
+            </ul>
+        </li>
+
+    }
+}
+
+@section mainHeading {
+    @if (IsSectionDefined("mainHeading"))
+    {
+        @RenderSection("mainHeading")
+    }
+    else
+    {
+        @*<a href="http://www.auburn.edu/" title="Auburn University">Auburn University</a>*@
+    }
+}
+
+@section subHeading {
+    @if (IsSectionDefined("subHeading"))
+    {
+        @RenderSection("subHeading")
+    }
+    else
+    {
+        @* Default Subheading *@
+    }
+}
+
+@RenderBody()

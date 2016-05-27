@@ -1,0 +1,63 @@
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\ApplicationInsights.config
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\csc.exe
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\vbc.exe
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\VBCSCompiler.exe
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Debugging project.dll.config
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Debugging project.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Debugging project.pdb
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Antlr3.Runtime.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\CWSToolkit.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.Web.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.ApplicationInsights.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Newtonsoft.Json.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Helpers.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Mvc.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Optimization.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Razor.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.Deployment.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.Razor.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\WebGrease.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\DotNetCasClient.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Antlr3.Runtime.pdb
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\CWSToolkit.pdb
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\CWSToolkit.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.Web.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.ApplicationInsights.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\Newtonsoft.Json.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Optimization.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Razor.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.Deployment.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Webpages.Razor.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Helpers.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\System.Web.Mvc.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\DotNetCasClient.pdb
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\bin\DotNetCasClient.xml
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\obj\Debug\Debugging project.csprojResolveAssemblyReference.cache
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\obj\Debug\Debugging project.dll
+C:\Users\sas0072\documents\visual studio 2015\Projects\Debugging project\Debugging project\obj\Debug\Debugging project.pdb
+C:\Users\sas0072\Documents\Visual Studio 2015\Projects\Debugging project\Debugging project\bin\EntityFramework.dll
+C:\Users\sas0072\Documents\Visual Studio 2015\Projects\Debugging project\Debugging project\bin\EntityFramework.SqlServer.dll
+C:\Users\sas0072\Documents\Visual Studio 2015\Projects\Debugging project\Debugging project\bin\EntityFramework.xml
+C:\Users\sas0072\Documents\Visual Studio 2015\Projects\Debugging project\Debugging project\bin\EntityFramework.SqlServer.xml
